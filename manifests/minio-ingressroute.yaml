@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: minio-ingress
+  namespace: blobber
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`minio.local`)
+      kind: Rule
+      services:
+        - name: minio
+          port: 9000
